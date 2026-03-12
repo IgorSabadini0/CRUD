@@ -8,6 +8,8 @@ const __dirname = path.dirname(__filename);
 
 const app = express();
 app.use(express.json());
+app.use(express.static(path.join(__dirname, '../../frontend')));
+
 
 const port = 3000;
 
@@ -16,7 +18,7 @@ app.listen(port, () => {
 });
 
 app.get('/', (req, res) => {
-    res.redirect('index.html');
+    res.redirect('pages/auth/index.html')
 });
 
 app.get('/clientes', async (req, res) => {
@@ -35,7 +37,7 @@ app.post('/auth', async (req, res) => {
     const password = req.body.password; // o .password refere-se ao name="password"
 
     try {
-        const verificarDB = "SELECT user, passwor FROM login WHERE user = ? AND password = ?";
+        const verificarDB = "SELECT user, password FROM login WHERE user = ? AND password = ?";
         const [rows] = await db.query(verificarDB, [user, password]);
 
         if (rows.length === 0) {
@@ -45,8 +47,8 @@ app.post('/auth', async (req, res) => {
         const usuario = rows[0] //o primeiro valor do array é o usuário do retorno da query que foi solicitado.
 
         return res.status(200).json({
-            mensgem: 'Login efetuado com sucesso',
-            redirectUrl: '/pages/main/index.html',
+            mensagem: 'Login efetuado com sucesso',
+            redirectUrl: 'pages/main/index.html',
             usuario: {
                 id: usuario.id,
                 nome: usuario.user
@@ -56,7 +58,7 @@ app.post('/auth', async (req, res) => {
         console.error(error);
         return res.status(500).json({ mensagem: 'Erro interno no servidor. ' });
     }
-})
+});
 
 /* 
     Criar nossa API de Usuários
