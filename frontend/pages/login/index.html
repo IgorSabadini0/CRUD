@@ -12,14 +12,17 @@
     <div class="container-login">
         <div class="grid">
             <label for="user">Usuário</label>
-            <input type="text" name="user" id="user-digitado">
+            <input type="text" name="user" id="user">
         </div>
         <div class="grid">
             <label for="password">Senha</label>
-            <input type="text" name="password" id="pass-digitado">
+            <input type="password" name="password" id="password">
         </div>
         <div class="login-btn">
             <button type="button" id="submit-btn" onclick="submit()">Entrar</button>
+        </div>
+        <div class="grid">
+            <p id="status" class="status"></p>
         </div>
     </div>
     <script src="script.js"></script>
