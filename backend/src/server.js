@@ -10,13 +10,6 @@ const app = express();
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../../frontend')));
 
-
-const port = 3000;
-
-app.listen(port, () => {
-    console.log(`Servidor rodando em http://localhost:${port}`);
-});
-
 app.get('/', (req, res) => {
     res.redirect('pages/auth/index.html')
 });
@@ -48,9 +41,8 @@ app.post('/auth', async (req, res) => {
 
         return res.status(200).json({
             mensagem: 'Login efetuado com sucesso',
-            redirectUrl: 'pages/main/index.html',
+            redirectUrl: '/pages/main/index.html',
             usuario: {
-                id: usuario.id,
                 nome: usuario.user
             }
         });
@@ -58,6 +50,12 @@ app.post('/auth', async (req, res) => {
         console.error(error);
         return res.status(500).json({ mensagem: 'Erro interno no servidor. ' });
     }
+});
+
+const PORT = 3000;
+
+app.listen(PORT, () => {
+    console.log(`Servidor rodando em http://localhost:${PORT}`);
 });
 
 /* 
