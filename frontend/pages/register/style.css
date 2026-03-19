@@ -13,7 +13,7 @@ body {
     height: 100vh;
 }
 
-.container-login {
+.container-register {
     background-color: #e4e4e4;
     padding: 2rem;
     border-radius: 8px;
@@ -46,10 +46,18 @@ input:focus {
     border-color: #007bff;
 }
 
-.login-btn {
+.register-btn {
     display: flex;
     justify-content: center;
     margin-top: 1rem;
+}
+
+.login p a {
+    text-decoration: none;
+}
+
+.login p a:hover {
+    text-decoration: underline;
 }
 
 #submit-btn {

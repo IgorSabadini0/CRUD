@@ -1,8 +1,8 @@
 const submit_btn = document.getElementById('submit-btn');
 
-const API_URL = "http://192.168.0.150:3000";
+const API_URL = 'http://localhost:3000';
 
-const submit = async () => {
+const access = async () => {
     const user = document.getElementById('user').value;
     const password = document.getElementById('password').value;
     const status = document.getElementById('status');
@@ -16,7 +16,7 @@ const submit = async () => {
     const data = await response.json();
 
     if (response.ok) {
-        window.location.href = data.redirectUrl;
+        window.location.href = '../main/index.html';
     } else {
         status.innerText = data.mensagem;
     }
